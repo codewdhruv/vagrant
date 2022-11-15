@@ -4,16 +4,10 @@ pipeline:
   projectIdentifier: DhrubaCI
   orgIdentifier: default
   tags: {}
-  properties:
-    ci:
-      codebase:
-        connectorRef: dhrubaaccountconnector
-        repoName: vagrant
-        build: <+input>
   stages:
     - stage:
-        name: backport
-        identifier: backport
+        name: builds
+        identifier: builds
         description: ""
         type: CI
         spec:
@@ -28,10 +22,16 @@ pipeline:
             steps:
               - step:
                   type: Run
-                  name: Backport changes to stable-website
-                  identifier: Backport_changes_to_stablewebsite
+                  name: Code Checkout
+                  identifier: Code_Checkout
                   spec:
                     connectorRef: account.harnessImage
-                    image: hashicorpdev/backport-assistant:0.2.3
+                    image: actions/checkout@v1
                     shell: Sh
-                    command: backport-assistant backport -automerge
+                    command: echo "suuccessfull"
+  properties:
+    ci:
+      codebase:
+        connectorRef: dhrubaaccountconnector
+        repoName: vagrant
+        build: <+input>
