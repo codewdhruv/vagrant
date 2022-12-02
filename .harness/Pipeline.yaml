@@ -22,13 +22,11 @@ pipeline:
             steps:
               - step:
                   type: Run
-                  name: Code Checkout
-                  identifier: Code_Checkout
+                  name: Backport changes to stable-website
+                  identifier: Backport_changes_to_stablewebsite
                   spec:
-                    connectorRef: account.harnessImage
-                    image: actions/checkout@v1
                     shell: Sh
-                    command: echo "suuccessfull"
+                    command: backport-assistant backport -automerge
   properties:
     ci:
       codebase:
