@@ -22,13 +22,11 @@ pipeline:
             steps:
               - step:
                   type: Run
-                  name: Backport changes to stable-website
-                  identifier: Backport_changes_to_stablewebsite
+                  name: Build RubyGem and binary
+                  identifier: Build_RubyGem_and_binary
                   spec:
-                    connectorRef: DhrubajyotiDocker
-                    image: hashicorpdev/backport-assistant:0.2.3
                     shell: Sh
-                    command: backport-assistant backport -automerge
+                    command: ./.ci/build.sh
   properties:
     ci:
       codebase:
